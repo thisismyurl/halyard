@@ -55,6 +55,7 @@
 		"typography": {
 			"fluid": true,
 			"customFontSize": false,
+			"defaultFontSizes": false,
 			"lineHeight": true,
 			"letterSpacing": true,
 			"textTransform": true,
@@ -178,6 +179,7 @@
 			]
 		},
 		"spacing": {
+			"defaultSpacingSizes": false,
 			"spacingSizes": [
 				{ "name": "1", "slug": "1", "size": "0.25rem" },
 				{ "name": "2", "slug": "2", "size": "0.5rem" },
