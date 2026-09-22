@@ -51,19 +51,19 @@ function halyard_register_bindings(): void {
 	);
 
 	register_block_bindings_source(
-		HALYARD_SLUG . '/footer-credit',
+		HALYARD_SLUG . '/publication-date',
 		array(
-			'label'              => esc_html__( 'Footer credit', 'halyard' ),
-			'get_value_callback' => 'halyard_get_footer_credit_value',
+			'label'              => esc_html__( 'Publication date', 'halyard' ),
+			'get_value_callback' => 'halyard_get_publication_date_value',
 			'uses_context'       => array(),
 		)
 	);
 
 	register_block_bindings_source(
-		HALYARD_SLUG . '/publication-date',
+		HALYARD_SLUG . '/footer-credit',
 		array(
-			'label'              => esc_html__( 'Publication date', 'halyard' ),
-			'get_value_callback' => 'halyard_get_publication_date_value',
+			'label'              => esc_html__( 'Footer credit', 'halyard' ),
+			'get_value_callback' => 'halyard_get_footer_credit_value',
 			'uses_context'       => array(),
 		)
 	);
@@ -156,50 +156,55 @@ function halyard_get_copyright_value(): string {
 }
 
 /**
- * Resolve the footer's "Built with {Theme}" credit line.
+ * Resolve the "Built with {Theme}" footer credit line.
  *
- * parts/footer.html has always bound a paragraph to this source, but the source
- * itself was never registered — so the credit paragraph rendered as an empty
- * <p> in every theme generated from the core. It is implemented here, where the
- * file docblock already described it.
+ * Registered here (CORE) since 1.6265.1511 — parts/footer.html has bound a
+ * paragraph to `{slug}/footer-credit` since the credit line existed, and this
+ * file's own docblock described the source in detail, but nothing ever called
+ * register_block_bindings_source() for it. Every theme in the line rendered an
+ * empty <p class="{slug}-footer-credit"> in every footer until this was found
+ * and fixed independently on Kerf and Halyard on the same day (2026-09-22),
+ * which is what surfaced it as a CORE bug rather than a per-theme one.
  *
- * The name and URL come from the style.css header via wp_get_theme(), so this
- * function carries no theme-specific string and stays portable. Returning an
- * empty string from the filter removes the credit without editing a template —
- * the "genuinely easy to remove" property WordPress.org asks for.
+ * Reads the theme's own Name and Theme URI from the style.css header via
+ * wp_get_theme(), so this file carries no theme-specific string and a synced
+ * copy needs no per-theme edit.
  *
- * @return string The composed credit line, or an empty string if filtered away.
+ * @since 1.6265.1511
+ *
+ * @return string The composed, filterable, and removable credit sentence.
  */
 function halyard_get_footer_credit_value(): string {
-	$theme = wp_get_theme( get_template() );
-	$name  = (string) $theme->get( 'Name' );
-	$url   = (string) $theme->get( 'ThemeURI' );
+	$theme = wp_get_theme();
+	$name  = $theme->get( 'Name' );
+	$uri   = $theme->get( 'ThemeURI' );
 
-	$link = '' !== $url
-		? '<a href="' . esc_url( $url ) . '" rel="nofollow">' . esc_html( $name ) . '</a>'
+	$credit = $uri
+		? sprintf( '<a href="%s">%s</a>', esc_url( $uri ), esc_html( $name ) )
 		: esc_html( $name );
 
-	$credit = sprintf(
-		/* translators: %s: theme name, linked to the theme's home page. */
+	$text = sprintf(
+		/* translators: %s: linked or plain theme name. */
 		esc_html__( 'Built with %s.', 'halyard' ),
-		$link
+		$credit
 	);
 
 	/**
-	 * Filters the footer credit line.
+	 * Filters the footer credit sentence.
 	 *
-	 * Return an empty string to remove the credit entirely.
+	 * Return an empty string to remove the credit line entirely — it is
+	 * intentionally easy to drop without editing the footer template part.
 	 *
-	 * @since 1.0.1
+	 * @since 1.6265.1511
 	 *
-	 * @param string $credit The composed "Built with {theme}." line.
+	 * @param string $text The composed "Built with {Theme}." sentence.
 	 */
-	$credit = (string) apply_filters( HALYARD_SLUG . '/footer_credit', $credit );
+	$text = (string) apply_filters( HALYARD_SLUG . '/footer_credit_text', $text ); // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 
-	// Same minimal anchor allow-list as the copyright line above: both take a
-	// filtered value straight into a rendered block, so both get one answer.
+	// Same minimal anchor allow-list as the copyright line above — both take a
+	// filtered value straight into a rendered block.
 	return wp_kses(
-		$credit,
+		$text,
 		array(
 			'a' => array(
 				'href'   => array(),
