@@ -14,7 +14,7 @@
 <section class="wp-block-group" style="padding-top:var(--wp--preset--spacing--8);padding-bottom:var(--wp--preset--spacing--8)">
 
 	<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"var:preset|font-size|2xl"}},"fontFamily":"serif"} -->
-	<h2 class="wp-block-heading has-serif-font-family" style="font-size:var(--wp--preset--font-size--2xl)"><?php echo esc_html__( 'On the water near you', 'halyard' ); ?></h2>
+	<h2 class="wp-block-heading has-serif-font-family" style="font-size:var(--wp--preset--font-size--2-xl)"><?php echo esc_html__( 'On the water near you', 'halyard' ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:columns {"style":{"spacing":{"margin":{"top":"var:preset|spacing|6"},"blockGap":{"left":"var:preset|spacing|7"}}}} -->
@@ -22,8 +22,8 @@
 
 		<!-- wp:column {"width":"38%"} -->
 		<div class="wp-block-column" style="flex-basis:38%">
-			<!-- wp:image {"aspectRatio":"3/4","style":{"border":{"radius":"4px"}}} -->
-			<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/on-the-water.jpg' ) ); ?>" alt="<?php esc_attr_e( 'A sailboat under sail on open water, the low sun sitting just above the horizon.', 'halyard' ); ?>" style="aspect-ratio:3/4;object-fit:cover;border-radius:4px"/></figure>
+			<!-- wp:image {"aspectRatio":"3/4","scale":"cover","style":{"border":{"radius":"4px"}}} -->
+			<figure class="wp-block-image has-custom-border"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/on-the-water.jpg' ) ); ?>" alt="<?php esc_attr_e( 'A sailboat under sail on open water, the low sun sitting just above the horizon.', 'halyard' ); ?>" style="border-radius:4px;aspect-ratio:3/4;object-fit:cover"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -72,13 +72,13 @@
 
 	<!-- wp:gallery {"columns":3,"linkTo":"none","style":{"spacing":{"margin":{"top":"var:preset|spacing|7"}}}} -->
 	<figure class="wp-block-gallery has-nested-images columns-3 is-cropped" style="margin-top:var(--wp--preset--spacing--7)">
-		<!-- wp:image {"aspectRatio":"1"} -->
+		<!-- wp:image {"aspectRatio":"1","scale":"cover"} -->
 		<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/commons-grid-1.jpg' ) ); ?>" alt="<?php esc_attr_e( 'Two hands tying a knot in a rope at a deck fitting.', 'halyard' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
-		<!-- wp:image {"aspectRatio":"1"} -->
+		<!-- wp:image {"aspectRatio":"1","scale":"cover"} -->
 		<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/commons-grid-2.jpg' ) ); ?>" alt="<?php esc_attr_e( 'A group of adult sailing volunteers in life jackets, laughing together on a grassy shoreline with sailing dinghies on the water behind them.', 'halyard' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
-		<!-- wp:image {"aspectRatio":"1"} -->
+		<!-- wp:image {"aspectRatio":"1","scale":"cover"} -->
 		<figure class="wp-block-image"><img src="<?php echo esc_url( get_theme_file_uri( 'assets/images/commons-grid-3.jpg' ) ); ?>" alt="<?php esc_attr_e( 'A small sailboat tied alongside a weathered wooden dock on flat water.', 'halyard' ); ?>" style="aspect-ratio:1;object-fit:cover"/></figure>
 		<!-- /wp:image -->
 	</figure>

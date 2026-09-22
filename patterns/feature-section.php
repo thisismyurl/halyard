@@ -32,7 +32,7 @@ $halyard_placeholder_src = get_template_directory_uri() . '/assets/images/placeh
 		<!-- wp:column {"verticalAlignment":"center"} -->
 		<div class="wp-block-column is-vertically-aligned-center">
 			<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"var:preset|font-size|2xl"},"spacing":{"margin":{"bottom":"var:preset|spacing|5"}}},"fontFamily":"serif"} -->
-			<h2 class="wp-block-heading has-serif-font-family" style="margin-bottom:var(--wp--preset--spacing--5);font-size:var(--wp--preset--font-size--2xl)"><?php echo esc_html__( 'A feature worth a closer look', 'halyard' ); ?></h2>
+			<h2 class="wp-block-heading has-serif-font-family" style="margin-bottom:var(--wp--preset--spacing--5);font-size:var(--wp--preset--font-size--2-xl)"><?php echo esc_html__( 'A feature worth a closer look', 'halyard' ); ?></h2>
 			<!-- /wp:heading -->
 
 			<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.7"},"spacing":{"margin":{"bottom":"var:preset|spacing|5"}},"color":{"text":"var:preset|color|base-ink"}}} -->

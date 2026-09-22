@@ -22,7 +22,7 @@
 	<!-- wp:site-title {"level":1,"isLink":false,"style":{"typography":{"fontSize":"var:preset|font-size|display","lineHeight":"0.88","letterSpacing":"-0.01em","fontWeight":"400"},"spacing":{"margin":{"top":"var:preset|spacing|3","bottom":"0"}}},"fontFamily":"serif"} /-->
 
 	<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"var:preset|font-size|2xl"},"color":{"text":"var:preset|color|base-black"}},"fontFamily":"serif"} -->
-	<h2 class="wp-block-heading has-base-black-color has-text-color has-serif-font-family" style="font-size:var(--wp--preset--font-size--2xl)"><?php echo esc_html__( 'The sailing commons', 'halyard' ); ?></h2>
+	<h2 class="wp-block-heading has-base-black-color has-text-color has-serif-font-family" style="font-size:var(--wp--preset--font-size--2-xl)"><?php echo esc_html__( 'The sailing commons', 'halyard' ); ?></h2>
 	<!-- /wp:heading -->
 
 	<!-- wp:paragraph {"style":{"typography":{"fontSize":"var:preset|font-size|md"},"spacing":{"margin":{"top":"var:preset|spacing|5"}},"color":{"text":"var:preset|color|base-mid"}},"fontFamily":"sans"} -->

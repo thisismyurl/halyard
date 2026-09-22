@@ -2,7 +2,7 @@
 /**
  * [SKIN] The skin layer — the one PHP file `colophon sync` never overwrites.
  *
- * Halyard's PHP-side personality: the 16:9 hero crop, the Anton preload that
+ * Halyard's PHP-side personality: the 16:9 wide-lead crop, the Anton preload that
  * carries the edition masthead, the two block styles the patterns lean on, the
  * `halyard` pattern category, and the onboarding lead.
  *
@@ -28,10 +28,16 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Register Halyard's image crop sizes.
  *
- * One 16:9 hero crop, used by the page-hero and feature-section patterns.
+ * One 16:9 crop, offered to editors placing a wide lead image on a page or a
+ * featured image on single.html (which breaks the image to `align:"wide"`).
+ * No shipped pattern requests it — the bundled demo photographs are square and
+ * the two starter patterns use the flat placeholder — so it exists for the
+ * site owner's own uploads, not for the theme's own markup. Said plainly
+ * because the earlier wording claimed the page-hero and feature-section
+ * patterns used it, and neither ever has.
  */
 function halyard_skin_image_sizes(): void {
-	add_image_size( 'halyard-hero', 1440, 810, true ); // 16:9 page-hero crop.
+	add_image_size( 'halyard-hero', 1440, 810, true ); // 16:9 wide-lead crop.
 }
 add_action( 'after_setup_theme', 'halyard_skin_image_sizes' );
 
