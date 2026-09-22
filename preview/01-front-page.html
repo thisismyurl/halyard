@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Halyard — front page preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base-black:#16324f; --base-ink:#1b2430; --base-mid:#5a6472;
+    --base-rule:#d8cdae; --base-ground:#e9e1cb; --base-paper:#f3efe2;
+    --base-accent:#c1382b; --base-accent-tint:#f1ddd8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--base-paper);color:var(--base-ink);font-family:'Archivo',sans-serif;line-height:1.6}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+  header{padding:56px 32px 40px}
+  .edition{font-family:'IBM Plex Mono',monospace;font-size:13px;text-transform:uppercase;letter-spacing:0.08em;color:var(--base-accent);margin:0 0 8px}
+  h1{font-family:'Anton',sans-serif;font-weight:400;font-size:96px;line-height:0.86;letter-spacing:-0.01em;text-transform:uppercase;margin:0}
+  h2.sub{font-family:'Anton',sans-serif;font-weight:400;font-size:44px;text-transform:uppercase;color:var(--base-black);margin:4px 0 24px}
+  .lede{font-size:18px;color:var(--base-mid);max-width:560px}
+  section.otw{padding:8px 32px 64px;display:flex;gap:48px}
+  section.otw img.hero-photo{width:36%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;flex-shrink:0}
+  .listing{flex:1}
+  .listing h3{font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:26px;margin:0 0 24px}
+  .item{border-bottom:1px solid var(--base-rule);padding:16px 0}
+  .item .title{font-weight:700}
+  .item .meta{font-family:'IBM Plex Mono',monospace;font-size:13px;color:var(--base-mid);margin-top:4px}
+  .item.open .meta{color:var(--base-accent)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;padding:0 32px 56px}
+  .grid img{width:100%;aspect-ratio:1;object-fit:cover}
+</style>
+</head>
+<body>
+
+  <header class="wrap">
+    <p class="edition">Edition 26.09 — hoisted monthly</p>
+    <h1>Halyard</h1>
+    <h2 class="sub">The sailing commons</h2>
+    <p class="lede">The month's sailing news, translated for someone who has never stepped on a boat, plus the commons board where a beginner and a mentor find each other.</p>
+  </header>
+
+  <section class="otw wrap">
+    <img class="hero-photo" src="../assets/images/on-the-water.jpg" alt="">
+    <div class="listing">
+      <h3>On the water near you</h3>
+      <div class="item">
+        <div class="title">Learn-to-sail day — no experience, no boat needed</div>
+        <div class="meta">Great Lakes region — date set per edition</div>
+      </div>
+      <div class="item">
+        <div class="title">Reach Initiative scholarship deadline</div>
+        <div class="meta">National — check the commons board for this edition's date</div>
+      </div>
+      <div class="item open">
+        <div class="title">Crew wanted — beginner-friendly, regional</div>
+        <div class="meta">OPEN — posted this edition</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="grid">
+    <img src="../assets/images/commons-grid-1.jpg" alt="">
+    <img src="../assets/images/commons-grid-2.jpg" alt="">
+    <img src="../assets/images/commons-grid-3.jpg" alt="">
+  </div>
+
+</body>
+</html>

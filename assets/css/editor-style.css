@@ -1,0 +1,12 @@
+/* Editor stylesheet for Colophon.
+ * Loaded only in the block editor via add_editor_style() in setup.php.
+ * Mirrors the front-end skin for a faithful What You See Is What You Get experience.
+ * Only rules that theme.json cannot express belong here. */
+
+/* Eyebrow label block style — visible in the editor as its own visual treatment */
+.is-style-halyard-eyebrow {
+	font-size: var(--wp--preset--font-size--xs);
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: var(--wp--preset--color--base-mid);
+}

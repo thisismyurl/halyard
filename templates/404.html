@@ -1,0 +1,32 @@
+<!-- 404 template for Colophon.
+     Clear orientation: what happened, what to do next.
+     Pillar 6 (Resilience): the 404 is an experience, not an empty page. -->
+
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","id":"main-content","className":"halyard-main halyard-404","layout":{"type":"constrained","contentSize":"720px"},"style":{"spacing":{"padding":{"top":"var:preset|spacing|20","bottom":"var:preset|spacing|20","left":"var:preset|spacing|5","right":"var:preset|spacing|5"}}}} -->
+<main id="main-content" class="wp-block-group halyard-main halyard-404" style="padding-top:var(--wp--preset--spacing--20);padding-bottom:var(--wp--preset--spacing--20);padding-left:var(--wp--preset--spacing--5);padding-right:var(--wp--preset--spacing--5)">
+
+	<!-- base-mid, not base-rule: base-rule is a border/separator tint, never
+	     audited as a text colour, and fails WCAG 1.4.3 badly (~1.4:1) as one.
+	     base-mid clears the large-text 3:1 floor in every style variation. -->
+	<!-- wp:heading {"level":1,"style":{"typography":{"fontSize":"var:preset|font-size|display","letterSpacing":"-0.03em","lineHeight":"1"},"color":{"text":"var:preset|color|base-mid"}}} -->
+	<h1 class="wp-block-heading has-base-mid-color has-text-color" style="font-size:var(--wp--preset--font-size--display);letter-spacing:-0.03em;line-height:1">404</h1>
+	<!-- /wp:heading -->
+
+	<!-- wp:group {"style":{"spacing":{"blockGap":"var:preset|spacing|6","padding":{"top":"var:preset|spacing|8"}}},"layout":{"type":"default"}} -->
+	<div class="wp-block-group" style="padding-top:var(--wp--preset--spacing--8)">
+
+		<!-- wp:pattern {"slug":"colophon/hidden-404-message"} /-->
+
+		<!-- wp:search {"buttonUseIcon":true} /-->
+
+		<!-- wp:pattern {"slug":"colophon/hidden-home-link"} /-->
+
+	</div>
+	<!-- /wp:group -->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->

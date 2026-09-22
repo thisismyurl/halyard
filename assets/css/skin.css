@@ -1,0 +1,166 @@
+/* =====================================================================
+   [SKIN] skin.css — Colophon's layout, components, and utilities.
+   ---------------------------------------------------------------------
+   This is the starter skin. Derived themes replace this file entirely
+   with their own design personality. The reset and base sheets are the
+   same for every theme in the Colophon collection; this sheet is what
+   makes Colophon a minimal starter and not a finished product.
+
+   Architecture: CSS @layers, declared in reset.css. Rules here live in
+   the appropriate layer based on their scope:
+     @layer layout     — structural containers
+     @layer components — reusable UI patterns
+     @layer blocks     — WordPress block-specific overrides
+     @layer utilities  — single-purpose helpers
+
+   To build your own skin:
+   1. Keep the @layer structure.
+   2. Bind the --cl-* semantic tokens to your palette colours (below).
+   3. Add your layout, component, block, and utility rules.
+   4. The reset and base sheets don't need editing — they're the floor.
+   ===================================================================== */
+
+/* =====================================================================
+   LAYER: layout
+   ===================================================================== */
+@layer layout {
+
+	/* Root padding binding — matches useRootPaddingAwareAlignments in theme.json */
+	:root {
+		--wp--style--root--padding-top:    var(--wp--preset--spacing--4);
+		--wp--style--root--padding-right:  var(--wp--preset--spacing--5);
+		--wp--style--root--padding-bottom: var(--wp--preset--spacing--4);
+		--wp--style--root--padding-left:   var(--wp--preset--spacing--5);
+	}
+
+	/* Colophon is a light-only theme by default.
+	   Derived themes that support dark mode declare color-scheme: light dark here. */
+	:root {
+		color-scheme: light;
+	}
+
+	/* Bind the semantic focus-ring and skip-link tokens to Colophon's palette */
+	:root {
+		--cl-focus-ring:         var(--wp--preset--color--base-accent);
+		--cl-focus-ring-inverse: var(--wp--preset--color--base-paper);
+		--cl-skip-bg:            var(--wp--preset--color--base-accent);
+		--cl-skip-fg:            var(--wp--preset--color--base-paper);
+	}
+
+	/* Site shell — ensures footer hugs the viewport bottom even on short pages */
+	.wp-site-blocks {
+		display: flex;
+		flex-direction: column;
+		min-height: 100dvh;
+	}
+
+	.halyard-main {
+		flex: 1;
+	}
+
+	/* Site header — border below to separate from content */
+	.halyard-site-header {
+		border-bottom: 1px solid var(--wp--preset--color--base-rule);
+	}
+}
+
+/* =====================================================================
+   LAYER: components
+   ===================================================================== */
+@layer components {
+
+	/* Eyebrow label style — small, tracked, muted.
+	   Registered as a block style in skin.php. */
+	.is-style-halyard-eyebrow {
+		font-size: var(--wp--preset--font-size--xs);
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--wp--preset--color--base-mid);
+	}
+
+	/* Full-bleed band — background fills the viewport.
+	   Registered as a block style in skin.php. */
+	.is-style-halyard-band {
+		background-color: var(--wp--preset--color--base-ground);
+	}
+
+	/* Inverted footer (patterns/site-footer.php) — dark background, so the
+	   global link colour (theme.json styles.elements.link, tuned for light
+	   backgrounds) fails WCAG 1.4.3 here: as low as 1.3:1 at rest, 1:1 on
+	   hover (hover = base-black = the footer's own background — invisible).
+	   The class beats core's a:where() rule on specificity alone (0,1,1 vs
+	   0,0,1), so this needs no !important and no elements.link JSON. */
+	.halyard-inverted-footer a:where(:not(.wp-element-button)) {
+		color: var(--wp--preset--color--base-rule);
+	}
+	.halyard-inverted-footer a:where(:not(.wp-element-button)):hover {
+		color: var(--wp--preset--color--base-paper);
+	}
+
+	/* Post navigation's "next" link — the visual pairing with "previous" needs
+	   it pushed to the trailing edge, but the block support's textAlign only
+	   takes a literal left/right, which doesn't flip for RTL. text-align: end
+	   is the logical property that does. */
+	.halyard-nav-next {
+		text-align: end;
+	}
+}
+
+/* =====================================================================
+   LAYER: blocks
+   WordPress block-specific overrides
+   ===================================================================== */
+@layer blocks {
+
+	/* Site title — no default underline on hover */
+	.wp-block-site-title a {
+		text-decoration: none;
+	}
+
+	/* Post title — remove default margin when used as a heading in a list */
+	.wp-block-post-list-item .wp-block-post-title {
+		margin: 0;
+	}
+
+	/* Navigation — remove default list markers */
+	.wp-block-navigation__container {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* Separator — consistent treatment */
+	.wp-block-separator {
+		border-color: var(--wp--preset--color--base-rule);
+	}
+}
+
+/* =====================================================================
+   LAYER: utilities
+   Single-purpose helpers
+   ===================================================================== */
+@layer utilities {
+
+	/* Visually mute secondary text (captions, meta) */
+	.halyard-muted {
+		color: var(--wp--preset--color--base-mid);
+	}
+}
+
+@media print {
+	.wp-block-navigation,
+	.wp-block-site-logo,
+	.wp-site-blocks > footer,
+	[data-wp-interactive] { display: none !important; }
+	body, .wp-site-blocks {
+		font-size: 12pt;
+		color: #000 !important;
+		background: #fff !important;
+		max-width: 100% !important;
+	}
+	a[href^="http"]::after {
+		content: " (" attr(href) ")";
+		font-size: 9pt;
+		color: #555;
+	}
+}

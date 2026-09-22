@@ -1,0 +1,52 @@
+<?php
+/**
+ * Title: Feature Section
+ * Slug: halyard/feature-section
+ * Categories: colophon
+ * Viewport Width: 1280
+ * Inserter: true
+ * Description: Two-column feature layout with a large image on the left and a heading, body copy, and link on the right.
+ *
+ * @package halyard
+ */
+
+// A real bundled image, not an unconfigured block — an <img> with no src is
+// invalid HTML and renders as a broken image the moment this pattern is
+// inserted and published without an editor swapping the picture first.
+$halyard_placeholder_src = get_template_directory_uri() . '/assets/images/placeholder.png';
+?>
+<!-- wp:group {"tagName":"section","style":{"spacing":{"padding":{"top":"var:preset|spacing|10","bottom":"var:preset|spacing|10","left":"var:preset|spacing|5","right":"var:preset|spacing|5"}},"color":{"background":"var:preset|color|base-paper"}},"layout":{"type":"constrained","contentSize":"1200px"}} -->
+<section class="wp-block-group has-base-paper-background-color has-background" style="padding-top:var(--wp--preset--spacing--10);padding-bottom:var(--wp--preset--spacing--10);padding-left:var(--wp--preset--spacing--5);padding-right:var(--wp--preset--spacing--5)">
+
+	<!-- wp:columns {"verticalAlignment":"center","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|7","left":"var:preset|spacing|9"}}}} -->
+	<div class="wp-block-columns are-vertically-aligned-center">
+
+		<!-- wp:column {"verticalAlignment":"center","width":"55%"} -->
+		<div class="wp-block-column is-vertically-aligned-center" style="flex-basis:55%">
+			<!-- wp:image {"url":"<?php echo esc_url( $halyard_placeholder_src ); ?>","aspectRatio":"3/2","scale":"cover","sizeSlug":"large"} -->
+			<figure class="wp-block-image size-large"><img src="<?php echo esc_url( $halyard_placeholder_src ); ?>" alt="" style="aspect-ratio:3/2;object-fit:cover"/></figure>
+			<!-- /wp:image -->
+		</div>
+		<!-- /wp:column -->
+
+		<!-- wp:column {"verticalAlignment":"center"} -->
+		<div class="wp-block-column is-vertically-aligned-center">
+			<!-- wp:heading {"level":2,"style":{"typography":{"fontSize":"var:preset|font-size|2xl"},"spacing":{"margin":{"bottom":"var:preset|spacing|5"}}},"fontFamily":"serif"} -->
+			<h2 class="wp-block-heading has-serif-font-family" style="margin-bottom:var(--wp--preset--spacing--5);font-size:var(--wp--preset--font-size--2xl)"><?php echo esc_html__( 'A feature worth a closer look', 'halyard' ); ?></h2>
+			<!-- /wp:heading -->
+
+			<!-- wp:paragraph {"style":{"typography":{"lineHeight":"1.7"},"spacing":{"margin":{"bottom":"var:preset|spacing|5"}},"color":{"text":"var:preset|color|base-ink"}}} -->
+			<p class="has-base-ink-color has-text-color" style="line-height:1.7"><?php echo esc_html__( 'Two or three sentences of body copy that explain the feature in plain language. Enough to set context and earn the click, without crowding the page.', 'halyard' ); ?></p>
+			<!-- /wp:paragraph -->
+
+			<!-- wp:paragraph {"style":{"typography":{"fontSize":"var:preset|font-size|sm","fontWeight":"600","letterSpacing":"0.04em","textTransform":"uppercase"}},"fontFamily":"sans"} -->
+			<p class="has-sans-font-family" style="font-size:var(--wp--preset--font-size--sm);font-weight:600;letter-spacing:0.04em;text-transform:uppercase"><a href="#"><?php echo esc_html__( 'Learn more', 'halyard' ); ?></a></p>
+			<!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:column -->
+
+	</div>
+	<!-- /wp:columns -->
+
+</section>
+<!-- /wp:group -->

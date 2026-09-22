@@ -1,0 +1,37 @@
+# Files excluded from the WordPress.org distribution zip.
+# The colophon CLI and WP.org deploy tooling both read this file.
+
+# Internal tooling manifests
+colophon.json
+colophon.manifest.json
+.distignore
+
+# Developer tooling and docs — for people building on Colophon, not for the
+# WP.org listing or an activated install. README.md carries donation links
+# that have no business in a shipped theme zip; the others document the CLI
+# and core architecture a WP.org visitor never touches.
+NOT-A-WP-THEME.md
+PILLARS.md
+README.md
+ARCHITECTURE.md
+GUIDE.md
+*.sh
+bin/
+tools/
+
+# CLI-only dev tooling (functions.php guards this with file_exists() so
+# excluding it here is safe under WP-CLI, not just on the front end).
+inc/cli.php
+
+# Preview system
+preview/
+
+# Version-control artefacts
+.git
+.github
+.gitignore
+.gitattributes
+
+# Translator documentation (not needed in distributed theme)
+languages/README.md
+languages/.gitkeep

@@ -1,0 +1,10 @@
+{
+    "name": "Halyard",
+    "slug": "halyard",
+    "namespace": "halyard",
+    "prefix": "ha",
+    "version": "1.0.0",
+    "colophon_version": "1.6252.1241",
+    "is_core": false,
+    "overrides": []
+}
