@@ -3,7 +3,7 @@
     "slug": "halyard",
     "namespace": "halyard",
     "prefix": "ha",
-    "version": "1.0.1",
+    "version": "1.6265.1511",
     "colophon_version": "1.6252.1241",
     "is_core": false,
     "overrides": []

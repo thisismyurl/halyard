@@ -5,7 +5,7 @@ Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custo
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.6265.1511
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,20 @@ Register them in the skin_block_styles() function in inc/skin.php and add the CS
 Halyard is a block theme built for the WordPress Site Editor. Page builders that support the block editor work alongside it; legacy drag-and-drop builders that bypass the block system are not supported.
 
 == Changelog ==
+
+= 1.6265.1511 =
+Version numbering switches to the collection-wide scheme (1.Y{DDD}.{HHMM},
+Toronto time) from this release forward, matching the Colophon core and every
+other theme in the line.
+
+* Regenerated commons-grid-2.jpg. The 1.0.1 image depicted children; sailing
+  education sites in this niche often serve youth programs, and synthetic
+  images that read as children are not a class of demo content this theme
+  ships, regardless of generation quality. Replaced with adult volunteers;
+  alt text updated to match.
+* Corrected the Resources section to name the generator (FLUX.1 [schnell],
+  Apache 2.0, via Cloudflare Workers AI) instead of describing the images only
+  as "synthetic" — the origin is now stated plainly rather than implied.
 
 = 1.0.1 =
 Correctness pass over the 1.0.0 scaffold. Nothing here is cosmetic; each item
@@ -303,10 +317,18 @@ See 1.6252.1241 above for the fixes made in response.
 
 * assets/images/on-the-water.jpg, commons-grid-1.jpg, commons-grid-2.jpg and
   commons-grid-3.jpg — the four demo photographs in the On the Water pattern.
-  Synthetic images generated for this theme; no photographer, stock library,
-  model or third-party source is involved, and no identifiable real person is
-  depicted. Copyright 2026 Christopher Ross, licensed GPLv2 or later, same as
-  the rest of the theme.
+  AI-generated using FLUX.1 [schnell] (Black Forest Labs, Apache License 2.0 —
+  https://github.com/black-forest-labs/flux/blob/main/model_licenses/LICENSE-FLUX1-schnell)
+  via Cloudflare Workers AI, prompted and selected by Christopher Ross. No
+  photographer, stock library, or third-party source is involved, and no real
+  identifiable person is depicted — every figure in every image is synthetic.
+  Copyright 2026 Christopher Ross, licensed GPLv2 or later, same as the rest
+  of the theme.
+
+  commons-grid-2.jpg was deliberately generated depicting adult volunteers
+  rather than children: a site in this niche often serves youth sailing
+  programs, and synthetic images that read as children — even clearly
+  AI-generated ones — are not a class of demo content this theme ships.
 
   They are demo content, not design assets: replace them with your own
   photographs before launch.
