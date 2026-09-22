@@ -2,7 +2,7 @@
 /**
  * Title: Home link (hidden)
  * Slug: halyard/hidden-home-link
- * Categories: colophon
+ * Categories: halyard
  * Inserter: false
  * Description: Not for the pattern picker — a translation-string carrier only.
  *

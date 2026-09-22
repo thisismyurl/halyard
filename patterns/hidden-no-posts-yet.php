@@ -2,7 +2,7 @@
 /**
  * Title: No posts yet (hidden)
  * Slug: halyard/hidden-no-posts-yet
- * Categories: colophon
+ * Categories: halyard
  * Inserter: false
  * Description: Not for the pattern picker — a translation-string carrier only.
  *

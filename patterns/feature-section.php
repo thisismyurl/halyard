@@ -2,7 +2,7 @@
 /**
  * Title: Feature Section
  * Slug: halyard/feature-section
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Two-column feature layout with a large image on the left and a heading, body copy, and link on the right.

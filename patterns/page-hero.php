@@ -2,7 +2,7 @@
 /**
  * Title: Page Hero
  * Slug: halyard/page-hero
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Full-width typographic hero with a large serif headline, a sans descriptor, and two call-to-action buttons.

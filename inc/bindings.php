@@ -51,6 +51,15 @@ function halyard_register_bindings(): void {
 	);
 
 	register_block_bindings_source(
+		HALYARD_SLUG . '/footer-credit',
+		array(
+			'label'              => esc_html__( 'Footer credit', 'halyard' ),
+			'get_value_callback' => 'halyard_get_footer_credit_value',
+			'uses_context'       => array(),
+		)
+	);
+
+	register_block_bindings_source(
 		HALYARD_SLUG . '/publication-date',
 		array(
 			'label'              => esc_html__( 'Publication date', 'halyard' ),
@@ -136,6 +145,61 @@ function halyard_get_copyright_value(): string {
 	// stops being noticed.
 	return wp_kses(
 		$copyright,
+		array(
+			'a' => array(
+				'href'   => array(),
+				'rel'    => array(),
+				'target' => array(),
+			),
+		)
+	);
+}
+
+/**
+ * Resolve the footer's "Built with {Theme}" credit line.
+ *
+ * parts/footer.html has always bound a paragraph to this source, but the source
+ * itself was never registered — so the credit paragraph rendered as an empty
+ * <p> in every theme generated from the core. It is implemented here, where the
+ * file docblock already described it.
+ *
+ * The name and URL come from the style.css header via wp_get_theme(), so this
+ * function carries no theme-specific string and stays portable. Returning an
+ * empty string from the filter removes the credit without editing a template —
+ * the "genuinely easy to remove" property WordPress.org asks for.
+ *
+ * @return string The composed credit line, or an empty string if filtered away.
+ */
+function halyard_get_footer_credit_value(): string {
+	$theme = wp_get_theme( get_template() );
+	$name  = (string) $theme->get( 'Name' );
+	$url   = (string) $theme->get( 'ThemeURI' );
+
+	$link = '' !== $url
+		? '<a href="' . esc_url( $url ) . '" rel="nofollow">' . esc_html( $name ) . '</a>'
+		: esc_html( $name );
+
+	$credit = sprintf(
+		/* translators: %s: theme name, linked to the theme's home page. */
+		esc_html__( 'Built with %s.', 'halyard' ),
+		$link
+	);
+
+	/**
+	 * Filters the footer credit line.
+	 *
+	 * Return an empty string to remove the credit entirely.
+	 *
+	 * @since 1.0.1
+	 *
+	 * @param string $credit The composed "Built with {theme}." line.
+	 */
+	$credit = (string) apply_filters( HALYARD_SLUG . '/footer_credit', $credit );
+
+	// Same minimal anchor allow-list as the copyright line above: both take a
+	// filtered value straight into a rendered block, so both get one answer.
+	return wp_kses(
+		$credit,
 		array(
 			'a' => array(
 				'href'   => array(),

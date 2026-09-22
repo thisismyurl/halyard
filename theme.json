@@ -41,7 +41,7 @@
 				},
 				{
 					"slug": "base-accent",
-					"color": "#c1382b",
+					"color": "#b53528",
 					"name": "Signal Red"
 				},
 				{
@@ -202,8 +202,7 @@
 		"custom": {
 			"halyard-light": "#f3efe2",
 			"halyard-dark": "#1b2430",
-			"halyard-accent": "#c1382b",
-			"halyard-edition-format": "YY.MM.DD"
+			"halyard-accent": "#b53528"
 		},
 		"blocks": {
 			"core/navigation": {
@@ -373,6 +372,11 @@
 		}
 	],
 	"customTemplates": [
+		{
+			"name": "page-edition",
+			"title": "Page (edition)",
+			"postTypes": [ "page" ]
+		},
 		{
 			"name": "page-wide",
 			"title": "Page (wide)",

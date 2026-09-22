@@ -2,14 +2,13 @@
 /**
  * [SKIN] The skin layer — the one PHP file `colophon sync` never overwrites.
  *
- * Colophon's PHP-side personality: a minimal skin that ships the theme working
- * out of the box. Derived themes (Kern, Masthead, Parcel, Wake) replace this
- * file with their own — adding image crops, font preloads, block styles, and
- * onboarding copy that match their specific design.
+ * Halyard's PHP-side personality: the 16:9 hero crop, the Anton preload that
+ * carries the edition masthead, the two block styles the patterns lean on, the
+ * `halyard` pattern category, and the onboarding lead.
  *
- * For Colophon itself, the skin is intentionally minimal: one generic image
- * size, no bundled font preload (system fonts load instantly without one), and
- * a single pattern category so the Patterns panel has a home.
+ * Everything else — theme supports, a11y scaffolding, the WooCommerce guard,
+ * the block bindings, the Get-started page — is [CORE] and is kept in step by
+ * `colophon sync`, which never touches this file.
  *
  * To build your own theme on Colophon:
  *   1. Add your font files to assets/fonts/ and register them in theme.json.
@@ -18,7 +17,8 @@
  *   4. Override the get_started_content filter with your onboarding copy.
  *   5. Everything else (a11y, WooCommerce guard, bindings, admin) is CORE — leave it.
  *
- * Pillar 9 (Archaeological Records): [SKIN] tag marks what belongs to Colophon.
+ * Pillar 9 (Archaeological Records): the [SKIN] tag marks what belongs to this
+ * theme rather than to the shared core.
  *
  * @package halyard
  */
@@ -26,10 +26,9 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Register Colophon's image crop sizes.
+ * Register Halyard's image crop sizes.
  *
- * One generic hero crop at 16:9, sufficient for a starter. Derived themes
- * add their own sizes here without editing any CORE file.
+ * One 16:9 hero crop, used by the page-hero and feature-section patterns.
  */
 function halyard_skin_image_sizes(): void {
 	add_image_size( 'halyard-hero', 1440, 810, true ); // 16:9 page-hero crop.
@@ -37,10 +36,11 @@ function halyard_skin_image_sizes(): void {
 add_action( 'after_setup_theme', 'halyard_skin_image_sizes' );
 
 /**
- * Register Colophon's block styles.
+ * Register Halyard's block styles.
  *
- * A minimal set that gives editors something to work with in the Styles panel
- * without locking in any personality. Derived themes extend this list.
+ * Two styles the shipped patterns lean on: the tracked mono eyebrow above a
+ * heading, and the full-bleed colour band. Both are CSS-only, treated in
+ * assets/css/skin.css.
  */
 function halyard_skin_block_styles(): void {
 
@@ -65,10 +65,11 @@ function halyard_skin_block_styles(): void {
 add_action( 'init', 'halyard_skin_block_styles' );
 
 /**
- * Register the Colophon pattern category.
+ * Register the Halyard pattern category.
  *
- * Derived themes register their own category (e.g., 'kern') and may remove
- * this one. The Patterns panel needs at least one category to show a group.
+ * Every pattern in patterns/ declares `Categories: halyard`, so this
+ * registration is what gives them a group in the Patterns panel rather than
+ * an unlabelled bucket.
  */
 function halyard_skin_pattern_categories(): void {
 	register_block_pattern_category(
@@ -79,11 +80,10 @@ function halyard_skin_pattern_categories(): void {
 add_action( 'init', 'halyard_skin_pattern_categories' );
 
 /**
- * Override the Get-started page content with Colophon-specific copy.
+ * Override the Get-started page lead with Halyard's own copy.
  *
- * Colophon's onboarding speaks to both end users and developers, since the
- * theme is explicitly designed to be extended. The CORE default covers end
- * users; this filter adds the developer context that makes Colophon distinct.
+ * The CORE default covers the generic onboarding steps; only the opening line
+ * needs to speak in this theme's voice.
  */
 add_filter(
 	'halyard/get_started_content', // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
@@ -96,12 +96,17 @@ add_filter(
 
 /**
  * Preload the LCP-critical font — the condensed display face carrying the
- * front-page wordmark ("Halyard"). Single static weight, no variable axis.
+ * edition masthead. Single static weight, no variable axis.
+ *
+ * The entry is a THEME-ROOT-RELATIVE path, not a URL. halyard_preload_fonts()
+ * drops any entry containing '://' so a filter can never trigger an off-origin
+ * fetch, and prefixes HALYARD_URI itself — so handing it get_theme_file_uri()
+ * silently preloads nothing.
  */
 add_filter(
 	'halyard/preload_fonts', // phpcs:ignore WordPress.NamingConventions.ValidHookName.UseUnderscores
 	static function ( array $fonts ): array {
-		$fonts[] = get_theme_file_uri( 'assets/fonts/anton/anton-regular.woff2' );
+		$fonts[] = 'assets/fonts/anton/anton-regular.woff2';
 
 		return $fonts;
 	}

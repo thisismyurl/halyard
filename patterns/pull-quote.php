@@ -2,7 +2,7 @@
 /**
  * Title: Pull Quote
  * Slug: halyard/pull-quote
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Centered typographic pull quote in large serif italic with an accent rule and a sans caps attribution.

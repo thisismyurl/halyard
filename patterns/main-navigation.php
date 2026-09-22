@@ -2,7 +2,7 @@
 /**
  * Title: Main Navigation
  * Slug: halyard/main-navigation
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Horizontal navigation bar with a site-title wordmark on the left and navigation links on the right, under a hairline rule.

@@ -2,7 +2,7 @@
 /**
  * Title: 404 message (hidden)
  * Slug: halyard/hidden-404-message
- * Categories: colophon
+ * Categories: halyard
  * Inserter: false
  * Description: Not for the pattern picker — a translation-string carrier only.
  *

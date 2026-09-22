@@ -5,7 +5,7 @@ Tags: blog, full-site-editing, block-patterns, custom-colors, custom-logo, custo
 Requires at least: 6.7
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,19 +15,19 @@ A bold, condensed FSE theme for teaching-first sailing and community-education s
 
 Halyard is built for the teaching-first sailing project, not the yacht club — the volunteer instructor, the parent whose kid just found free crewing, the community sailing commons translating the industry firehose for someone who has never stepped on a boat. The name is the line that hoists a sail, already used inside the Colophon collection's own naming doctrine as an example of insider vocabulary — a beginner learns the word in their first hour at the dock, long before "close-hauled" or "spinnaker."
 
-The front page is templated as a dated periodical edition, not a static homepage: a huge condensed wordmark and edition stamp, then a photo-and-listing section pairing a community photo with a dated calendar — regattas, scholarship deadlines, and "crew wanted" commons-board posts — closing with a photo grid. No other theme in the directory treats "front page" as "this month's issue."
+The signature layout is a dated periodical edition: a huge condensed wordmark carrying your site's name, a live dateline, then a photo-and-listing section pairing a community photo with a dated calendar — regattas, scholarship deadlines, and "crew wanted" commons-board posts — closing with a photo grid. It ships as the "Page (edition)" page template and as two patterns you can drop anywhere, so you opt into it on the page you choose rather than having it imposed on your home page.
 
 Halyard is built on the Colophon core: the CORE/SKIN architecture separates portable infrastructure (accessibility scaffolding, WooCommerce compatibility, the onboarding flow) from this theme's own personality (its palette, its type pairing, its patterns), so updates to the shared foundation never touch the design.
 
 Features:
 
 * Full Site Editing — every element customisable in the Site Editor
-* System font stack — no external requests; typography uses the visitor's native fonts until you add your own
+* Self-hosted OFL fonts (Anton, Archivo, IBM Plex Mono) — bundled with the theme, no Google Fonts request, nothing phoning home
 * Built to WCAG 2.2 AA guidelines — visible focus rings, screen-reader utilities, semantic landmark elements
 * RTL-ready — all layout written with CSS logical properties
 * Core Web Vitals optimised — zero render-blocking JavaScript, cascade-ordered CSS, no dead weight
 * Reduced-motion support — all decorative animation is governed by a single global guard
-* Block patterns — starter patterns for hero, content, and navigation layouts
+* Block patterns — the edition masthead and on-the-water calendar, plus starter hero, content, and navigation layouts
 * WooCommerce compatible — declares support automatically when the plugin is active
 * Zero plugin dependencies
 
@@ -42,7 +42,7 @@ Every file in inc/ is labelled [CORE] or [SKIN].
 == Installation ==
 
 1. In your WordPress admin, go to Appearance → Themes → Add New.
-2. Search for "Colophon" or upload the theme zip.
+2. Search for "Halyard" or upload the theme zip.
 3. Activate the theme.
 4. Go to Appearance → Halyard: Get started for optional setup steps.
 
@@ -60,6 +60,12 @@ A teaching-first sailing or community-education project wanting a dated-edition 
 
 Yes. Halyard is one of the Colophon collection's niche editorial themes — each is a full standalone theme on WordPress.org, built on the shared Colophon core and independently maintained.
 
+= How do I get the dated-edition layout? =
+
+Create a page, and in the page's settings choose the "Page (edition)" template. You get the masthead, the on-the-water calendar, and then your own page content below. Set that page as your front page under Settings → Reading if you want it as your home page.
+
+It is deliberately a page template rather than a front-page template. WordPress gives front-page.html priority over everything else whenever it considers a request the front page — including the default "Your latest posts" setting — so a designed front-page template would replace your blog index with the theme's demo content on a fresh install, and would discard the content of whatever page you assigned as your static front page. As a page template you choose where it applies and your content is never lost.
+
 = How do I add my own fonts? =
 
 Register them in theme.json under settings.typography.fontFamilies, add the font files to assets/fonts/, and update inc/skin.php to preload the LCP-critical font via the halyard/preload_fonts filter. No other file needs editing.
@@ -70,9 +76,60 @@ Register them in the skin_block_styles() function in inc/skin.php and add the CS
 
 = Is it compatible with page builders? =
 
-Colophon is a block theme built for the WordPress Site Editor. Page builders that support the block editor work alongside it; legacy drag-and-drop builders that bypass the block system are not supported.
+Halyard is a block theme built for the WordPress Site Editor. Page builders that support the block editor work alongside it; legacy drag-and-drop builders that bypass the block system are not supported.
 
 == Changelog ==
+
+= 1.0.1 =
+Correctness pass over the 1.0.0 scaffold. Nothing here is cosmetic; each item
+was a feature that did not work on a real install.
+
+* Fixed six block-pattern references that still pointed at the core's `colophon/`
+  namespace while the patterns register under `halyard/`. The blog index shipped
+  with no h1, the 404 page with no message and no home link, and all three
+  "no results" messages (index, archive, search) rendered as nothing.
+* Fixed the same leak in parts/footer.html's block bindings (`colophon/copyright`)
+  and in the `Categories:` header of all fourteen inherited patterns, which had
+  them filed under an unregistered category in the inserter.
+* Implemented the `footer-credit` binding source. parts/footer.html has always
+  bound a paragraph to it and inc/bindings.php has always documented it, but it
+  was never registered, so the credit rendered as an empty paragraph.
+* Fixed the Anton preload, which was silently doing nothing: inc/skin.php passed
+  an absolute URL to a filter whose consumer drops any entry containing "://"
+  and prefixes the theme URI itself. The LCP font is now actually preloaded.
+* Replaced templates/front-page.html with templates/page-edition.html, an opt-in
+  page template. WordPress selects front-page.html whenever is_front_page() is
+  true, which includes the default "Your latest posts" setting, and it outranks
+  index.html — so the 1.0.0 front-page template replaced the site's blog index
+  with this theme's demo content on a fresh install, and, having no
+  wp:post-content, discarded the content of any page assigned as a static front
+  page. It also carried no <main> element, so it was the one template with no
+  main landmark and no target for the skip link WordPress injects at render time.
+  The same design as a page template is correct in all three configurations.
+* The masthead wordmark is wp:site-title instead of a hardcoded "Halyard", so
+  the h1 names the site rather than the theme, and the edition dateline is bound
+  to the publication-date source instead of a hardcoded "Edition 26.09" that
+  would have been stale a month after release.
+* Accessibility: base-accent (#c1382b) against base-ground measured 4.16:1, below
+  the WCAG 1.4.3 AA floor for normal text — and base-ground is the footer
+  background, where theme.json colours every link with it. Darkened to #b53528,
+  which measures 4.59:1 there and 5.21:1 on base-paper, verified by relative-
+  luminance calculation across every text/background pair the theme actually
+  uses. The five style variations carry their own full palettes and were
+  unaffected.
+* Accessibility: the four demo photographs had alt text that instructed the site
+  owner ("Placeholder — replace with a real photo…") rather than describing the
+  image, and three of them shared one identical string. Each now describes what
+  is in the frame.
+* readme.txt: corrected the Installation step that told people to search for
+  "Colophon", the feature list that still claimed a system font stack after the
+  theme began bundling fonts, and the missing Resources entries for the four
+  bundled photographs.
+* Added languages/ with the translator notes the core ships, including the two
+  make-pot traps specific to this theme line (block-template HTML is not
+  scanned; the text domain must stay a string literal).
+* Removed the unused `halyard-edition-format` custom token, which emitted a
+  meaningless CSS custom property and was read by nothing.
 
 = 1.0.0 =
 Initial release. Reskinned from the Colophon core with:
@@ -80,10 +137,10 @@ Initial release. Reskinned from the Colophon core with:
 * Palette, type pairing (Anton + Archivo + IBM Plex Mono), and button treatment
   reworked into a bold, condensed, shipping-bulletin register — see the design
   brief for the full etymology and precedent list.
-* New signature front-page template composing two new patterns:
-  edition-masthead (the huge two-line wordmark + dated-edition stamp) and
-  on-the-water (a photo-and-listing calendar plus a photo grid) — the front
-  page as a periodical edition, not a static homepage.
+* Two new patterns: edition-masthead (the huge two-line wordmark + dated-edition
+  stamp) and on-the-water (a photo-and-listing calendar plus a photo grid) — the
+  page as a periodical edition. (1.0.0 composed these into a front-page.html;
+  see 1.0.1 for why that became a page template instead.)
 * Real self-hosted OFL font files (Anton static, Archivo variable, IBM Plex
   Mono 400/500 static) replacing the core's system-font fallback.
 * Demo photography is placeholder/generated — see each pattern's alt-text
@@ -243,6 +300,25 @@ See 1.6252.1241 above for the fixes made in response.
   image in the Content Grid and Feature Section patterns so an unconfigured
   block never ships as a bare `<img>` with no `src`. Licensed GPLv2 or later,
   same as the rest of the theme.
+
+* assets/images/on-the-water.jpg, commons-grid-1.jpg, commons-grid-2.jpg and
+  commons-grid-3.jpg — the four demo photographs in the On the Water pattern.
+  Synthetic images generated for this theme; no photographer, stock library,
+  model or third-party source is involved, and no identifiable real person is
+  depicted. Copyright 2026 Christopher Ross, licensed GPLv2 or later, same as
+  the rest of the theme.
+
+  They are demo content, not design assets: replace them with your own
+  photographs before launch.
+
+* Bundled fonts:
+  - assets/fonts/anton/ — Anton, Copyright The Anton Project Authors
+    (https://github.com/googlefonts/anton), SIL Open Font License 1.1.
+  - assets/fonts/archivo/ — Archivo, Copyright The Archivo Project Authors
+    (https://github.com/Omnibus-Type/Archivo), SIL Open Font License 1.1.
+  - assets/fonts/ibm-plex-mono/ — IBM Plex Mono, Copyright IBM Corp.
+    (https://github.com/IBM/plex), SIL Open Font License 1.1.
+  Licence text: https://openfontlicense.org/
 
 == License ==
 

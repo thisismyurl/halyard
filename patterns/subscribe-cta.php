@@ -2,7 +2,7 @@
 /**
  * Title: Subscribe CTA
  * Slug: halyard/subscribe-cta
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Centered call-to-action with a serif heading, short pitch paragraph, and a subscribe button on a tinted background.

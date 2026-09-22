@@ -1,0 +1,38 @@
+<!-- Page (edition) — Halyard's signature dated-periodical layout, offered as an
+     OPT-IN page template rather than as front-page.html.
+
+     Why not front-page.html: WordPress picks front-page.html whenever
+     is_front_page() is true, which includes the default "Your latest posts"
+     setting, and it wins over index.html. A front-page.html made of static
+     pattern content therefore replaces the site's blog index with the theme's
+     demo copy on a fresh install, and a front-page.html with no
+     wp:post-content silently discards the content of whatever page the owner
+     assigns as their static front page. Colophon's core removed its own
+     front-page.html for the neighbouring reason (it was built around
+     wp:post-content alone and shipped blank under "Your latest posts") — the
+     failure mode differs, the cause is the same: front-page.html is not a
+     place for a designed composition.
+
+     As a page template the same design is safe in all three configurations:
+     "Your latest posts" falls through to index.html, a static front page
+     without this template gets page.html, and a page that opts into "Page
+     (edition)" gets the masthead, the calendar section, and its own content.
+
+     The masthead's h1 is wp:site-title, not a hardcoded string, so the
+     heading belongs to the site rather than to the theme. -->
+
+<!-- wp:template-part {"slug":"header"} /-->
+
+<!-- wp:group {"tagName":"main","id":"main-content","className":"halyard-main halyard-page-edition","layout":{"type":"constrained","contentSize":"1100px"},"style":{"spacing":{"padding":{"bottom":"var:preset|spacing|20"}}}} -->
+<main id="main-content" class="wp-block-group halyard-main halyard-page-edition" style="padding-bottom:var(--wp--preset--spacing--20)">
+
+	<!-- wp:pattern {"slug":"halyard/edition-masthead"} /-->
+
+	<!-- wp:pattern {"slug":"halyard/on-the-water"} /-->
+
+	<!-- wp:post-content {"layout":{"type":"constrained","contentSize":"720px"}} /-->
+
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer"} /-->

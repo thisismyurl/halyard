@@ -2,7 +2,7 @@
 /**
  * Title: Post List
  * Slug: halyard/post-list
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Clean editorial list of four posts, each with a date, serif title, and excerpt, divided by hairline rules.

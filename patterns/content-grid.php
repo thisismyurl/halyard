@@ -2,7 +2,7 @@
 /**
  * Title: Content Grid
  * Slug: halyard/content-grid
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Three-column grid of cards, each with a 4:3 image placeholder, heading, short paragraph, and a read-more link.

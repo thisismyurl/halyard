@@ -2,7 +2,7 @@
 /**
  * Title: No search results (hidden)
  * Slug: halyard/hidden-no-search-results
- * Categories: colophon
+ * Categories: halyard
  * Inserter: false
  * Description: Not for the pattern picker — a translation-string carrier only.
  *

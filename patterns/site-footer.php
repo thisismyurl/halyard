@@ -2,7 +2,7 @@
 /**
  * Title: Site Footer
  * Slug: halyard/site-footer
- * Categories: colophon
+ * Categories: halyard
  * Viewport Width: 1280
  * Inserter: true
  * Description: Three-column footer with site name and tagline, navigation links, and contact details, closed by a copyright bar.

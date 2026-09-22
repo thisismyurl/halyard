@@ -2,7 +2,7 @@
 /**
  * Title: Latest posts heading (hidden)
  * Slug: halyard/hidden-latest-posts-heading
- * Categories: colophon
+ * Categories: halyard
  * Inserter: false
  * Description: Not for the pattern picker — a translation-string carrier only.
  *
